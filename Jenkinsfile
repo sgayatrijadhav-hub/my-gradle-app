@@ -5,7 +5,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/sgayatrijadhav-hub/my-gradle-app.git'
+               git branch: 'main', url: 'https://github.com/sgayatrijadhav-hub/my-gradle-app.git'
             }
         }
 
