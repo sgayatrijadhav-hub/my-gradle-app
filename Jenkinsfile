@@ -1,11 +1,17 @@
-pipeline {
+ppipeline {
     agent any
 
     stages {
 
-        stage('Checkout') {
+        stage('Clone') {
             steps {
-               git branch: 'main', url: 'https://github.com/sgayatrijadhav-hub/my-gradle-app.git'
+                git branch: 'main', url: 'https://github.com/sgayatrijadhav-hub/my-gradle-app.git'
+            }
+        }
+
+        stage('Clean') {
+            steps {
+                sh 'gradle clean'
             }
         }
 
@@ -15,9 +21,21 @@ pipeline {
             }
         }
 
+        stage('Test') {
+            steps {
+                sh 'gradle test'
+            }
+        }
+
         stage('Run') {
             steps {
                 sh 'gradle run'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deployment Successful'
             }
         }
     }
